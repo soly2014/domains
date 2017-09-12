@@ -55,6 +55,7 @@ class Domain
 	}
 
 
+
 	/**
 	 * [callResellerClubEndpoint call the endpoint]
 	 * @param  [string] $domain 
@@ -73,22 +74,52 @@ class Domain
 
 	/**
 	 * [changeNameServer call the endpoint]
-	 * @param  [string] $order_id 
+	 * @param  [string] $entityid 
 	 * @param  [array] $name_servers [ns1,ns2]
 	 * @return [json] [json response]
 	 */
-	public function changeNameServer($order_id='78352905',$name_servers=['moha708516.mercury.orderbox-dns.com',
-		                                                                                        'moha708516.venus.orderbox-dns.com']){
+	public function changeNameServer($entityid='78446168',$name_servers=[
+		                                          'dns5.parkpage.foundationapi.com',
+		                                          'dns6.parkpage.foundationapi.com'])
+	{
 
 		return $this->callResellerClubEndpoint('domains/modify-ns', 'POST' ,  array(
-	 		'order-id' => $order_id,
+	 		'order-id' => $entityid,
 	 		'ns' => $name_servers
  	      ));
 
 	}
 
+	/**
+	 * [createGsuiteAccount call the endpoint]
+	 * @param  [string] $entityid 
+	 * @param  [array] $name_servers [ns1,ns2]
+	 * @return [json] [json response]
+	 */
+	public function createGsuiteAccount($params)
+	{
+
+		return $this->callResellerClubEndpoint('gapps/gbl/add', 'POST' , $params);
+
+	}
+
 
 	/**
+	 * [createGsuiteAdminAccount call the endpoint]
+	 * @param  [string] $entityid 
+	 * @param  [array] $name_servers [ns1,ns2]
+	 * @return [json] [json response]
+	 */
+	public function createGsuiteAdminAccount($params)
+	{
+
+		return $this->callResellerClubEndpoint('gapps/gbl/admin/add', 'POST' , $params);
+
+	}
+
+
+	/**
+	 * 
 	 * [callResellerClubEndpoint call the endpoint]
 	 * @param  [string] $endpoint [endpoint to request]
 	 * @param  [string] $method   [GET,POST]
